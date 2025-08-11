@@ -49,49 +49,48 @@ function Search() {
       hasMore={hasMore}
       loader={<h4>Loading...</h4>}
     >
-      {
-        searched && animeList.map((anime) => (
-          <div className="container mt-4">
-            <div className="row g-2">
-              {searched && animeList.map((anime) => (
-                <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={anime.mal_id}>
-                  <div className="card h-100">
-                    <img
-                      className="card-img-top"
-                      src={anime.images.jpg.image_url}
-                      alt={anime.title}
-                      loading="lazy"
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{anime.title}</h5>
-                      <p className="card-text text-danger">
-                        {anime.score && `Rating: ${anime.score}`}
-                      </p>
-                      {anime.genres.length > 0 && (
-                        <p className="card-text text-primary">
-                          Genres: {anime.genres.map(g => g.name).join(", ")}
-                        </p>
-                      )}
-                      {anime.trailer?.url && (
-                        <a
-                          href={anime.trailer.url}
-                          className="btn btn-primary btn-sm"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Watch Trailer
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+     {
+  searched && (
+    <div className="container mt-4">
+      <div className="row g-2">
+        {animeList.map((anime) => (
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={anime.mal_id}>
+            <div className="card h-100">
+              <img
+                className="card-img-top"
+                src={anime.images.jpg.image_url}
+                alt={anime.title}
+                loading="lazy"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{anime.title}</h5>
+                <p className="card-text text-danger">
+                  {anime.score && `Rating: ${anime.score}`}
+                </p>
+                {anime.genres.length > 0 && (
+                  <p className="card-text text-primary">
+                    Genres: {anime.genres.map(g => g.name).join(", ")}
+                  </p>
+                )}
+                {anime.trailer?.url && (
+                  <a
+                    href={anime.trailer.url}
+                    className="btn btn-primary btn-sm"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Watch Trailer
+                  </a>
+                )}
+              </div>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
-        ))
-
-      }
 
     </InfiniteScroll>
   </>
